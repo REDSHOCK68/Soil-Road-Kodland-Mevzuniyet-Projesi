@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
+public class TopDownController : MonoBehaviour
+{
+    public float moveSpeed = 5f;
+    public float runMultiplier = 1.5f;
+
+    private Rigidbody2D rb;
+    private Vector2 moveInput;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+
+        // Rigidbody ayarlarını kontrol et, güvenlik için
+        rb.gravityScale = 0f;
+        rb.freezeRotation = true;
+    }
+
+    void Update()
+    {
+        // WASD girişini al
+        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+    }
+
+    void FixedUpdate()
+    {
+        float currentSpeed = moveSpeed;
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed *= runMultiplier;
+        }
+
+        // MovePosition ile fiziksel çarpışmaları destekleyen düzgün hareket
+        rb.MovePosition(rb.position + moveInput * currentSpeed * Time.fixedDeltaTime);
+    }
+}
