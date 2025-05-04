@@ -1,0 +1,3 @@
+print("DevLog1: Collectable Sistemi Eklendi!!")
+
+print("Menü Yapılıyor!!")
