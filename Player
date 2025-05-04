@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+
+public class Player : MonoBehaviour
+{
+    public int Wheats = 0;
+    public int Coins = 0;
+    public TextMeshProUGUI tmp;
+    public TextMeshProUGUI tmp2;
+
+    void Update()
+    {
+        tmp.text = "Wheats: " + Wheats.ToString();
+        tmp2.text = "Coins: " + Coins.ToString();
+    }
+}
